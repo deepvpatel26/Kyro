@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submission History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        td.actions {
+            text-align: center;
+        }
+
+        .delete-form {
+            display: inline-block;
+        }
+
+        .delete-button {
+            padding: 5px 10px;
+            background-color: #f44336;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .delete-button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <h1>Submission History</h1>
+    <table>
+        <tr>
+            <th>Submission Time</th>
+            <th>URL</th>
+            <th>Category</th>
+            <th>Action</th>
+        </tr>
+        {% for submission in submission_history %}
+        <tr>
+            <td>{{ submission[1] }}</td>
+            <td><a href="{{ submission[2] }}" target="_blank">{{ submission[2] }}</a></td>
+            <td>{{ submission[3] }}</td>
+            <td class="actions">
+                <form class="delete-form" action="/delete" method="POST">
+                    <input type="hidden" name="submission_id" value="{{ submission[0] }}">
+                    <button class="delete-button" type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

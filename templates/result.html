@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL Submission Result</title>
+    <style>
+        body {
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        table {
+            margin: auto;
+            width: 80%;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        a {
+            color: #0000EE;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>URL Submitted Successfully</h1>
+    <p>The URL <strong>{{ url }}</strong> has been submitted.</p>
+    <p>Predicted Category: <strong>{{ category }}</strong></p>
+    <a href="/">Go back to submit another URL</a>
+    <h2>Submission History</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>URL</th>
+            <th>Submission Time</th>
+            <th>Predicted Category</th>
+        </tr>
+        {% for url in urls %}
+        <tr>
+            <td>{{ url[0] }}</td>
+            <td><a href="{{ url[1] }}" target="_blank">{{ url[1] }}</a></td>
+            <td>{{ url[2] }}</td>
+            <td>{{ url[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
